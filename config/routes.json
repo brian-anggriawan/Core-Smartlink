@@ -2,28 +2,28 @@
     "/register": {
         "method": "post",
         "controller": "authController",
-        "function": "authentication",
+        "function": "register",
         "authentication": false,
         "requestBody": true
     },
     "/login": {
         "method": "post",
         "controller": "authController",
-        "function": "logout",
+        "function": "login",
         "authentication": true,
         "requestBody": false
     },
     "/layanan": {
         "method": "post",
-        "controller": "authController",
-        "function": "profile",
+        "controller": "itemController",
+        "function": "create",
         "authentication": true,
-        "requestBody": false
+        "requestBody": true
     },
     "/transaksi": {
         "method": "post",
-        "controller": "authController",
-        "function": "editprofile",
+        "controller": "transactionController",
+        "function": "buyItem",
         "authentication": true,
         "requestBody": true
     }

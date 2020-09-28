@@ -213,7 +213,6 @@ function resOutput(APP, req, res, params, status) {
 
                 output.code = message.company.code || params.code;
                 output.message = params.message || message.company.message;
-                output.error = params.error || message.company.error;
                 output.status = params.status || message.company.status;
                 output.data = params.data || message.company.data;
                 output.debug = undefined;

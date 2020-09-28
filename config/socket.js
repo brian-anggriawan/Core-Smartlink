@@ -4,8 +4,6 @@
 const calk = require('chalk');
 const moment = require('moment');
 
-/* Controller */
-const machineController = require('../controllers/machineController');
 
 const insertLog = palyloadLog => {
     let { event, data, message, success, APP } = palyloadLog;
@@ -56,24 +54,6 @@ module.exports = (APP, io) => {
             palyloadLog.message = 'Success';
 
             insertLog(palyloadLog);
-        });
-
-        socket.on('counter', data => {
-            palyloadLog.event = 'COUNTER';
-            palyloadLog.message = 'Success';
-            palyloadLog.data = data;
-
-            data.length = data.length ? data.length : 0;
-            data.width = data.width ? data.width : 0;
-            data.body = data;
-
-            machineController.insertCounter(APP, data, (err, result) => {
-                delete data.body;
-
-                if (err) return (palyloadLog.message = 'Error insert'), (palyloadLog.success = false), insertLog(palyloadLog);
-
-                insertLog(palyloadLog);
-            });
         });
 
         console.log('Server socket is connected');
