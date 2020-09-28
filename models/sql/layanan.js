@@ -2,7 +2,7 @@
 
 module.exports = function(sequelize, Sequelize) {
     let Model = sequelize.define(
-        'user',
+        'layanan',
         {
             id: {
                 type: Sequelize.STRING,
@@ -13,14 +13,11 @@ module.exports = function(sequelize, Sequelize) {
             nama: {
                 type: Sequelize.STRING
             },
-            username: {
+            unit: {
                 type: Sequelize.STRING
             },
-            password: {
-                type: Sequelize.STRING
-            },
-            telepon: {
-                type: Sequelize.STRING
+            harga: {
+                type: Sequelize.INTEGER
             },
             created_at: {
                 type: Sequelize.DATE,
