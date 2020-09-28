@@ -1,114 +1,30 @@
 {
-    "/apiv1/user/authentication": {
+    "/register": {
         "method": "post",
         "controller": "authController",
         "function": "authentication",
         "authentication": false,
         "requestBody": true
     },
-    "/apiv1/user/logout": {
+    "/login": {
         "method": "post",
         "controller": "authController",
         "function": "logout",
         "authentication": true,
         "requestBody": false
     },
-    "/apiv1/user/profile": {
+    "/layanan": {
         "method": "post",
         "controller": "authController",
         "function": "profile",
         "authentication": true,
         "requestBody": false
     },
-    "/apiv1/user/edit": {
+    "/transaksi": {
         "method": "post",
         "controller": "authController",
         "function": "editprofile",
         "authentication": true,
         "requestBody": true
-    },
-    "/apiv1/user/adduser": {
-        "method": "post",
-        "controller": "authController",
-        "function": "addUser",
-        "authentication": true,
-        "requestBody": true
-    },
-    "/apiv1/user/list": {
-        "method": "post",
-        "controller": "authController",
-        "function": "listUser",
-        "authentication": true,
-        "requestBody": false
-    },
-    "/apiv1/user/validation-username": {
-        "method": "post",
-        "controller": "authController",
-        "function": "validationUserName",
-        "authentication": true,
-        "requestBody": true
-    },
-    "/apiv1/user/validation-email": {
-        "method": "post",
-        "controller": "authController",
-        "function": "validationEmail",
-        "authentication": true,
-        "requestBody": true
-    },
-    "/apiv1/user/validation-notelp": {
-        "method": "post",
-        "controller": "authController",
-        "function": "validationNotelp",
-        "authentication": true,
-        "requestBody": true
-    },
-    "/apiv1/machine/list": {
-        "method": "post",
-        "controller": "machineController",
-        "function": "listMachine",
-        "authentication": true,
-        "requestBody": false
-    },
-    "/apiv1/machine/create": {
-        "method": "post",
-        "controller": "machineController",
-        "function": "createMachine",
-        "authentication": true,
-        "requestBody": true
-    },
-    "/apiv1/machine/edit": {
-        "method": "post",
-        "controller": "machineController",
-        "function": "editMachine",
-        "authentication": true,
-        "requestBody": true
-    },
-    "/apiv1/machine/insert-counter": {
-        "method": "post",
-        "controller": "machineController",
-        "function": "insertCounter",
-        "authentication": true,
-        "requestBody": true
-    },
-    "/apiv1/machine/testing-socket": {
-        "method": "post",
-        "controller": "machineController",
-        "function": "testingSocket",
-        "authentication": true,
-        "requestBody": false
-    },
-    "/apiv1/machine/history-production": {
-        "method": "post",
-        "controller": "machineController",
-        "function": "historyProduction",
-        "authentication": true,
-        "requestBody": false
-    },
-    "/apiv1/machine/daily-report": {
-        "method": "post",
-        "controller": "machineController",
-        "function": "dailyReport",
-        "authentication": true,
-        "requestBody": false
     }
 }
