@@ -1,0 +1,52 @@
+{
+    "OK": {
+        "error": false,
+        "code": "00",
+        "name": "OK_NAME",
+        "status": 200,
+        "from": "",
+        "info": {},
+        "message": "Sample success response.",
+        "data": {}
+    },
+    "ERR": {
+        "error": true,
+        "code": "-01",
+        "name": "ERR_NAME",
+        "status": 400,
+        "from": "",
+        "info": {},
+        "message": "Sample error response!",
+        "data": {}
+    },
+    "NOT_FOUND": {
+        "error": true,
+        "code": "-01",
+        "name": "ERR_NAME",
+        "status": 400,
+        "from": "",
+        "info": {},
+        "message": "Data not found",
+        "data": {}
+    },
+    "TOKEN_ERR": {
+        "error": true,
+        "code": "-01",
+        "name": "ERR_NAME",
+        "status": 401,
+        "from": "",
+        "info": {},
+        "message": "Unauthorized access",
+        "data": {}
+    },
+    "INVALID_REQUEST": {
+        "error": true,
+        "code": "-01",
+        "name": "ERR_NAME",
+        "status": 400,
+        "from": "",
+        "info": {},
+        "message": "Invalid Request",
+        "data": {}
+    }
+}
