@@ -36,11 +36,11 @@ exports.validationUserName = (APP, req, callback) => {
 
 exports.validationNotelp = (APP, req, callback) => {
     let { user } = APP.models.mysql;
-    let { notelp } = req.body;
+    let { telepon } = req.body;
 
     user.findAll({
         where: {
-            notelp: notelp
+            telepon: telepon
         }
     })
         .then(res => {
@@ -66,35 +66,49 @@ exports.validationNotelp = (APP, req, callback) => {
 
 exports.register = (APP, req, callback) => {
     let { user } = APP.models.mysql;
-    let { username, email, notelp, password } = req.body;
+    let { nama, username, telepon, password } = req.body;
 
     async.waterfall(
         [
             function validationRequest(callback) {
-                if (!username || !email || !notelp || !password)
+                if (!username || !nama || !telepon || !password)
                     return callback({
                         code: 'INVALID_REQUEST',
                         message: 'Invalid request (All)'
                     });
+
+                if (!APP.validation.name(nama)) return callback({
+                    code: 'INVALID_REQUEST',
+                    message: 'Invalid request (nama)'
+                });
+
+                if (!APP.validation.username(username)) return callback({
+                    code: 'INVALID_REQUEST',
+                    message: 'Invalid request (username)'
+                });
+
+                if (!APP.validation.password(password)) return callback({
+                    code: 'INVALID_REQUEST',
+                    message: 'Invalid request (password)'
+                });
+
+                if (!APP.validation.phone(telepon)) return callback({
+                    code: 'INVALID_REQUEST',
+                    message: 'Invalid request (telepon)'
+                });
+
                 let salt = bcrypt.genSaltSync(10);
                 let data = {
                     insert: {
+                        nama: nama,
                         username: username,
-                        email: email,
-                        notelp: notelp,
+                        telepon: parseInt(telepon),
                         password: bcrypt.hashSync(password, salt)
                     }
                 };
 
+            
                 callback(null, data);
-            },
-
-            function validationEmail(data, callback) {
-                exports.validationEmail(APP, req, (err, result) => {
-                    if (err) return callback(err);
-
-                    callback(null, data);
-                });
             },
 
             function validationUserName(data, callback) {
@@ -113,13 +127,31 @@ exports.register = (APP, req, callback) => {
                 });
             },
 
+            function generateId(data, callback) {
+                data.request_id ={
+                    prefix: 'USR',
+                    table: user
+                };
+
+                APP.request.generateId(data.request_id, (err, result) => {
+                    if (err) return callback({
+                        code: 'INVALID_REQUEST',
+                        message: 'Gagal request generate id'
+                    });
+
+                    data.insert.id = result.data.id;
+
+                    callback(null, data);
+                });
+            },
+
             function isnert(data, callback) {
                 user.create(data.insert)
                     .then(res => {
                         callback(null, {
                             code: 'OK',
-                            message: 'Success create user',
-                            data: res
+                            message: 'berhasil terdaftar',
+                            data: {}
                         });
                     })
                     .catch(err => {
@@ -158,8 +190,7 @@ exports.authentication = (APP, req, callback) => {
             function validationUser(data, callback) {
                 user.findAll({
                     where: {
-                        username: username,
-                        status: 1
+                        username: username
                     }
                 })
                     .then(res => {
@@ -180,9 +211,7 @@ exports.authentication = (APP, req, callback) => {
                         data.request_token = {
                             id: res[0].id,
                             username: res[0].username,
-                            image: res[0].image,
-                            email: res[0].email,
-                            notelp: res[0].notelp
+                            nama: res[0].nama
                         };
 
                         callback(null, data);
@@ -198,18 +227,19 @@ exports.authentication = (APP, req, callback) => {
 
             function requestToken(data, callback) {
                 APP.authentication.requestToken(APP, data.request_token, (err, result) => {
-                    console.log(err);
                     if (err)
                         return callback({
                             code: 'ERR',
                             message: 'Error request token',
                             data: err
                         });
+                    
+                    data.request_token.token = result.data.token;
 
                     callback(null, {
                         code: 'OK',
-                        message: 'Success',
-                        data: result.data
+                        message: 'Berhasil melakukan login',
+                        data: data.request_token
                     });
                 });
             }

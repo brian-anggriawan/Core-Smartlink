@@ -229,7 +229,7 @@ function resOutput(APP, req, res, params, status) {
                 }
 
                 if (process.env.APP_MESSAGE !== 'true') output = params;
-
+             
                 callback(null, message);
             },
             function logging(message, callback) {
@@ -293,12 +293,12 @@ function resOutput(APP, req, res, params, status) {
         (err, message) => {
             trycatch(
                 () => {
-                    if (process.env.JSON_RESPONSE !== 'true') return res.status(params.status || message.company.status || 200).send(output);
-                    return res.status(params.status || message.company.status || 200).json(output);
+                    if (process.env.JSON_RESPONSE !== 'true') return res.status(message.company.code || 200).send(output);
+                    return res.status(message.company.code || 200).json(output);
                 },
                 () => {
-                    if (process.env.JSON_RESPONSE !== 'true') return res.status(params.status || message.company.status || 200).send(output);
-                    return res.status(params.status || message.company.status || 200).json(output);
+                    if (process.env.JSON_RESPONSE !== 'true') return res.status(message.company.code || 200).send(output);
+                    return res.status(message.company.code || 200).json(output);
                 }
             );
         }

@@ -11,24 +11,17 @@ module.exports = function(sequelize, Sequelize) {
                 autoIncrement: true,
                 unique: true
             },
+            nama: {
+                type: Sequelize.STRING
+            },
             username: {
                 type: Sequelize.STRING
             },
             password: {
                 type: Sequelize.STRING
             },
-            email: {
+            telepon: {
                 type: Sequelize.STRING
-            },
-            notelp: {
-                type: Sequelize.STRING
-            },
-            image: {
-                type: Sequelize.TEXT
-            },
-            status: {
-                type: Sequelize.INTEGER,
-                defaultValue: 1
             },
             created_at: {
                 type: Sequelize.DATE,
@@ -43,13 +36,13 @@ module.exports = function(sequelize, Sequelize) {
                 defaultValue: Sequelize.NOW
             },
             created_by: {
-                type: Sequelize.INTEGER
+                type: Sequelize.STRING
             },
             updated_by: {
-                type: Sequelize.INTEGER
+                type: Sequelize.STRING
             },
             deleted_by: {
-                type: Sequelize.INTEGER
+                type: Sequelize.STRING
             }
         },
         {}

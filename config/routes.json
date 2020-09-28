@@ -9,9 +9,9 @@
     "/login": {
         "method": "post",
         "controller": "authController",
-        "function": "login",
-        "authentication": true,
-        "requestBody": false
+        "function": "authentication",
+        "authentication": false,
+        "requestBody": true
     },
     "/layanan": {
         "method": "post",
