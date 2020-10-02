@@ -12,7 +12,7 @@ if (process.env.MONGO === 'true') {
         useUnifiedTopology: true
     };
 
-    mongoose.connect('mongodb://' + host + '/' + name, mongoOptions);
+    mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${host}/${name}?retryWrites=true&w=majority`, mongoOptions);
     mongoose.connection.on('error', console.error.bind(console, '[ERR] Mongo connection error!'));
     mongoose.connection.once('open', () => {
         console.log('[OK] Mongo connected!');
